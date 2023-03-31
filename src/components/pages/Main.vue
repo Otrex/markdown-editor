@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row w-full h-full transit">
+  <div class="flex flex-row w-full h-full transit text-black">
     <div id="md" class="h-full overflow-hidden flex flex-col bg-slate-300">
       <div
         class="uppercase font-medium text-sm bg-slate-500 px-3 py-1 text-white"
