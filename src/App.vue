@@ -1,15 +1,17 @@
 <template>
-  <transition>
-    <loading v-if="loading" />
-  </transition>
-  <div class="flex flex-row">
+  <div class="w-full h-screen !overflow-hidden">
     <transition>
-      <sidebar v-show="showSideBar" />
+      <loading v-if="loading" />
     </transition>
-    <div class="w-full h-screen flex flex-col">
-      <nav-bar />
-      <main-content class="h-full overflow-hidden" />
-      <footer-bar />
+    <div class="flex w-full overflow-hidden flex-row">
+      <transition>
+        <sidebar v-show="showSideBar" />
+      </transition>
+      <div class="w-full h-screen flex flex-col">
+        <nav-bar />
+        <main-content class="h-full w-full overflow-hidden" />
+        <footer-bar />
+      </div>
     </div>
   </div>
 </template>

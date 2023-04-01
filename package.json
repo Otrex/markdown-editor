@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@types/markdown-it": "^12.2.3",
+    "jspdf": "^2.5.1",
     "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
     "marked": "^4.3.0",
     "pinia": "^2.0.33",
     "split.js": "^1.6.5",
+    "sweetalert2": "^11.7.3",
     "vite-svg-loader": "^4.0.0",
     "vue": "^3.2.47"
   },

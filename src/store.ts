@@ -10,11 +10,11 @@ export const savedDocumentsStore = useLocalStore<LocalFileType[]>(
   "saved-documents",
   []
 );
+export const fileName = ref(DEFAULT_FILE_NAME);
+export const showSideBar = ref(false);
 export const activeFile = ref("");
 export const loading = ref(true);
-export const showSideBar = ref(false);
 export const content = ref("");
-export const fileName = ref(DEFAULT_FILE_NAME);
 export const files = ref<
   (LocalFileType & { isActive?: boolean; isSelected?: boolean })[]
 >([]);

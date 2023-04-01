@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-row w-full h-full transit text-black">
-    <div id="md" class="h-full overflow-hidden flex flex-col bg-slate-300">
+  <div class="flex md:flex-row flex-col w-full h-full transit text-black">
+    <div id="md" class="md:w-auto !w-full h-full overflow-hidden flex flex-col bg-slate-300">
       <div
         class="uppercase font-medium text-sm bg-slate-500 px-3 py-1 text-white"
       >
@@ -13,7 +13,7 @@
       ></textarea>
     </div>
 
-    <div id="preview" class="h-full flex flex-col overflow-hidden bg-slate-300">
+    <div id="preview" class="md:w-auto !w-full h-full flex flex-col overflow-hidden bg-slate-300">
       <div
         class="uppercase font-medium text-sm bg-slate-500 px-3 py-1 text-white"
       >
@@ -34,13 +34,28 @@ import { fileName, content } from "../../store";
 import { marked } from "marked";
 import Split from "split.js";
 
+
+type Orientation = 'horizontal' | 'vertical'
+const orientation = ref<Orientation>();
+
+const mediaQuery = () => {
+  const mediaQuery = window.matchMedia('(min-width: 768px)')
+  if (mediaQuery.matches) orientation.value = 'vertical';
+  else orientation.value = 'horizontal';
+}
+
 onMounted(() => {
   Split(["#md", "#preview"], {
-    minSize: 100,
-    gutterSize: 1,
+    direction: "horizontal",
+    sizes: [100, 100],
+    gutterSize: 2,
   });
+  window.addEventListener("resize",() => {
+    mediaQuery();
+  })
 });
 const preview = computed(() => marked.parse(content.value));
+
 </script>
 
 <style>
@@ -85,6 +100,10 @@ textarea {
   @apply text-sm;
 }
 
+#render-board ul {
+  list-style-type: disc;
+  @apply pl-5;
+}
 #render-board pre {
   @apply text-sm;
 }
@@ -109,7 +128,7 @@ textarea {
 }
 
 #render-board blockquote {
-  @apply bg-slate-400 border-l-2 border-slate-700 pl-2;
+  @apply bg-slate-400 border-l-4 border-slate-700 pl-2;
 }
 
 #render-board blockquote blockquote {
